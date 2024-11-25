@@ -1,0 +1,14 @@
+db username -- rahulkar996    password -- kRiqc1U9sA3O9ufg
+
+
+
+mongoimport --uri mongodb+srv://rahulkar996:<PASSWORD>@cluster0.tlqfo.mongodb.net/<DATABASE> --collection <COLLECTION> --type <FILETYPE> --file <FILENAME>
+
+
+
+
+
+
+mongoimport --uri mongodb+srv://rahulkar996:kRiqc1U9sA3O9ufg@cluster0.tlqfo.mongodb.net/gofoodmern --collection food_iems --jsonArray --file "C:\foodData2.json"
+
+mongoimport --uri mongodb+srv://rahulkar996:kRiqc1U9sA3O9ufg@cluster0.tlqfo.mongodb.net/gofoodmern --collection food_category --jsonArray --file "C:\food_category.json"

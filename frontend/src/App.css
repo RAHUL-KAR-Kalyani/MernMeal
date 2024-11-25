@@ -1,0 +1,8 @@
+.form-control,.form-control:focus{
+    box-shadow: none !important;
+    outline: none !important;    
+}
+
+.table-custom{
+    margin-bottom: 50rem !important;
+}
