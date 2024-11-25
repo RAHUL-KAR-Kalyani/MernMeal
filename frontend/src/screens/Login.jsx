@@ -7,7 +7,7 @@ function Login() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();  // synthetic event
-		const response = await fetch("http://localhost:5000/api/loginuser", {
+		const response = await fetch("https://mernmeal-backend.onrender.com/api/loginuser", {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json'
