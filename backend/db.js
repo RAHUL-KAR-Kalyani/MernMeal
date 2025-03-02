@@ -7,7 +7,11 @@ const mongoDb = async () => {
 	await mongoose.connect(MONGO_URI)
 	try {
 		// db connection
-		await mongoose.connect(MONGO_URI);
+		await mongoose.connect(MONGO_URI, {
+		    useNewUrlParser: true,
+		    useUnifiedTopology: true,
+		    maxPoolSize: 10
+		});
 		console.log("mongodb connected successfully");
 
 		// const fetchData = await mongoose.connection.db.collection("food_items").find({}).toArray(async function (err, data) {
