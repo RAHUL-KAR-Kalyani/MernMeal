@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function Login() {
 	const [credentials, setCredentials] = useState({ email: "", password: "" })
@@ -33,20 +34,23 @@ function Login() {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value })
 	}
 	return (
-		<div className='container'>
-			<form onSubmit={handleSubmit}>
-				<div className="mb-3">
-					<label htmlFor="email" className="form-label">Email address</label>
-					<input type="email" className="form-control" id="email" aria-describedby="emailHelp" name='email' value={credentials.email} onChange={inputChange} />
-				</div>
-				<div className="mb-3">
-					<label htmlFor="password" className="form-label">Password</label>
-					<input type="password" className="form-control" id="password" name='password' value={credentials.password} onChange={inputChange} />
-				</div>
+		<div>
+			<Navbar />
+			<div className='container mt-2'>
+				<form onSubmit={handleSubmit}>
+					<div className="mb-3">
+						<label htmlFor="email" className="form-label">Email address</label>
+						<input type="email" className="form-control" id="email" aria-describedby="emailHelp" name='email' value={credentials.email} onChange={inputChange} />
+					</div>
+					<div className="mb-3">
+						<label htmlFor="password" className="form-label">Password</label>
+						<input type="password" className="form-control" id="password" name='password' value={credentials.password} onChange={inputChange} />
+					</div>
 
-				<button type="submit" className="m-3 btn btn-success">Submit</button>
-				<Link to="/createuser" className='m-3 btn btn-danger '>I'm a new user</Link>
-			</form>
+					<button type="submit" className="m-3 btn btn-success">Submit</button>
+					<Link to="/createuser" className='m-3 btn btn-danger '>I'm a new user</Link>
+				</form>
+			</div>
 		</div>
 	)
 }
