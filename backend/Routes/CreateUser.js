@@ -9,36 +9,74 @@ const jwtSecretKey = "aB3dEfGhIjKlMnOpQrStUvWxYz0123"
 
 // signup router
 
-router.post("/createuser",
+// router.post("/createuser",
+//     [
+//         body('email').isEmail(),
+//         body('name').isLength({ min: 5 }),
+//         body('password', 'Incorrect Password').isLength({ min: 5 })
+//         // body('password','Incorrect Password').isLength({ min: 5 }).withMessage('Name must be at least 5 characters long')
+//     ],
+//     async (req, res) => {
+//         const errors = validationResult(req);
+//         if (!errors.isEmpty()) {
+//             return res.status(400).json({ errors: errors.array() });
+//         }
+
+//         const salt = await bcrypt.genSalt(10);
+//         let securePassword = await bcrypt.hash(req.body.password, salt)
+
+//         try {
+//             await User.create({
+//                 name: req.body.name,
+//                 password: securePassword,
+//                 email: req.body.email,
+//                 location: req.body.location
+//             }).then(res.json({ success: true }));
+
+//         } catch (error) {
+//             // console.log(error);
+//             res.json({ success: false });
+//         }
+//     }
+// )
+
+
+
+router.post(
+    "/createuser",
     [
         body('email').isEmail(),
         body('name').isLength({ min: 5 }),
         body('password', 'Incorrect Password').isLength({ min: 5 })
-        // body('password','Incorrect Password').isLength({ min: 5 }).withMessage('Name must be at least 5 characters long')
     ],
     async (req, res) => {
+        // 🔹 Check for Validation Errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ success: false, errors: errors.array() });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        let securePassword = await bcrypt.hash(req.body.password, salt)
-
         try {
-            await User.create({
+            // 🔹 Hash Password
+            const salt = await bcrypt.genSalt(10);
+            const securePassword = await bcrypt.hash(req.body.password, salt);
+
+            // 🔹 Create New User
+            const newUser = await User.create({
                 name: req.body.name,
                 password: securePassword,
                 email: req.body.email,
                 location: req.body.location
-            }).then(res.json({ success: true }));
+            });
+
+            return res.status(201).json({ success: true, message: "User Created Successfully" });
 
         } catch (error) {
-            // console.log(error);
-            res.json({ success: false });
+            console.error("Signup Error:", error);
+            return res.status(500).json({ success: false, error: "Internal Server Error" });
         }
     }
-)
+);
 
 // login router
 
