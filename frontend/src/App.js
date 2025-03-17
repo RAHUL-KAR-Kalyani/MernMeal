@@ -7,7 +7,7 @@ import Home from './screens/Home';
 import Login from './screens/Login2.jsx';
 import Signup from './screens/Signup2.jsx';
 import { CartProvider } from './components/ContextReducer.jsx';
-import MyOrder from './screens/MyOrder.jsx';
+import MyOrder from './screens/MyOrder2.jsx';
 // import Cart from './screens/Cart.jsx';
 
 function App() {
